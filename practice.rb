@@ -51,7 +51,7 @@
 
 # puts user_signedin && paying_user ? "Welcome to Netflix" : "Log in or Sign up"
 
-# array - these are incredibly common
+# Arrays - these are incredibly common
 
 # array_of_names = [ "Ron","Mark","Andrew", "Trina", "Joanna", 5, true, [3,4] ] # example of an array
 # #                   0       1       2       3       4         - arrays starts at 0
@@ -95,25 +95,98 @@
 
 # iterators or loops
 
-player_scores = [ 50, 100, 30, 60 ]
+# player_scores = [ 50, 100, 30, 60 ]
 
-player_scores.each do |score|  # syntax of a for loop, the each loop
-    if score > 50 # only outputs scores greater than 50
-        puts "Players Score: #{score}"
-    end
-end 
+# player_scores.each do |score|  # syntax of a for loop, the each loop
+#     if score > 50 # only outputs scores greater than 50
+#         puts "Players Score: #{score}"
+#     end
+# end 
 
-player_scores.each { |score|  puts "Simplified Loop - Players Score: #{score}" }  # simplified loop
+# player_scores.each { |score|  puts "Simplified Loop - Players Score: #{score}" }  # simplified loop
 
-upgraded_player_scores = player_scores.map { |x| x + 10 } # creates a new array, stored in a new variable name
+# upgraded_player_scores = player_scores.map { |x| x + 10 } # creates a new array, stored in a new variable name
 
-print player_scores
-print "\n"
-print upgraded_player_scores
-print "\n"
+# print player_scores
+# print "\n"
+# print upgraded_player_scores
+# print "\n"
 
-hash_of_players = { player1: "Ron", player2: "Blitz", player3: "Condoriano" }
+# hash_of_players = { player1: "Ron", player2: "Blitz", player3: "Condoriano" }
 
-hash_of_players.each do |k, v| # this is how you do each loop on hashes, 1 variable is for the key and the other for the value
-    puts "#{k}, #{v}" # outputs the key and the value together, very useful
+# hash_of_players.each do |k, v| # this is how you do each loop on hashes, 1 variable is for the key and the other for the value
+#     puts "#{k}, #{v}" # outputs the key and the value together, very useful
+# end
+
+# # Methods/Functions # little blueprints
+
+# def say_hello 
+# 	puts "hello"
+# end
+
+# say_hello
+
+# def power(base, exponent) # parameters
+# 	result = 1 
+# 	exponent.times do # this is like the for loop, .times mean number of times the loop will go on
+# 		result = result * base
+# 	end
+# 	result
+# end
+
+# puts power(2,3) # the parentheses can be removed and would still work
+
+# Classes
+
+# class User # a collection of functions and variables that are all related to anything, to anyone object, the masterplan of our users
+# 	attr_accessor :favorite_color # you can add more than 1 here, down the line you wanna add some attributes to them on the fly, you are now able to add features to your users on the fly, programatically
+# 	def initialize(fname, lname) # this is a special function, this runs when .new function is called, this is an initializer # sets some defaults whenever you create a new user
+# 		@first_name = fname # whenever you are inside of classes, you use the "@" symbol to indicate these instance variables, whenver we are using this user class (user1 is an instance), each instance of your user can have these variables
+# 		@last_name = lname
+# 	end
+
+# 	def say_name
+# 		puts "Hi, I'm #{@first_name}"
+# 	end
+# 	def post_tweet
+# 		puts "Tweet posted."
+# 	end
+# end
+
+# user1 = User.new("John", "Doe") # instantiation, taking the blueprint, let's bring this user to life when using the .new, because of this, this user can now use the functions inside User class
+# # this is an object, the .new creates new objects in the machines memory
+# user1.say_name
+# user1.post_tweet # runs the post_tweet function
+# user1.favorite_color = "Black"
+
+# puts user1.favorite_color
+
+# puts user1.inspect # list of traits from any class, shows the attributes
+# # a class is a grouping of code, methods and variables grouped, wrap up a bunch of codes that is related to one thing, for example users
+
+# INHERITANCE
+
+class User # a collection of functions and variables that are all related to anything, to anyone object, the masterplan of our users
+	attr_accessor :favorite_color # you can add more than 1 here, down the line you wanna add some attributes to them on the fly, you are now able to add features to your users on the fly, programatically
+	def initialize(fname, lname) # this is a special function, this runs when .new function is called, this is an initializer # sets some defaults whenever you create a new user
+		@first_name = fname # whenever you are inside of classes, you use the "@" symbol to indicate these instance variables, whenver we are using this user class (user1 is an instance), each instance of your user can have these variables
+		@last_name = lname
+	end
+
+	def say_name
+		puts "Hi, I'm #{@first_name}"
+	end
 end
+
+user1 = User.new("John", "Doe")
+
+class Admin < User # this is how you inherit from a class in ruby, this class is gonna get all the capabilites of the User class, this is the benefit of inheritance, you don't have to copy all lines of codes
+	def say_name
+		super # does all the methods the inherited method does, like a quick copy paste
+		puts "I'm an admin user." # additional code for the method but only for the Admin class
+	end
+end
+
+admin_user = Admin.new("Ron", "Pahuts")
+puts admin_user.inspect
+admin_user.say_name
